@@ -1,6 +1,6 @@
 // Star Wars Characters (DATA)
 // =============================================================
-var characters = [
+var Friends = [
 
 	{
   "name":"Toni",

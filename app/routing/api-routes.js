@@ -44,12 +44,6 @@ module.exports = function(app){
 			res.json(true); // KEY LINE -In order to rack that they made the reservation
 		}
 
-		// Or false if they don't have a table
-		else{
-			waitListData.push(req.body);
-			res.json(false); // KEY LINE
-		}
-
 	});
 
 	// ---------------------------------------------------------------------------

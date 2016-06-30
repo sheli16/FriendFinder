@@ -217,65 +217,39 @@ body { background-image:url('http://cdn.dcodes.net/2/bg_images/light/l15.png'); 
       Name: $('#inputName').val().trim(),
       photoURL: $('#inputPictureLink').val().trim(),
        scores:[
-            $('.Q1').val().trim(),
-            $('.Q2').val().trim(),
-            $('.Q3').val().trim(),
-            $('.Q4').val().trim(),
-            $('.Q5').val().trim(),
-            $('.Q6').val().trim(),
-            $('.Q7').val().trim(),
-            $('.Q8').val().trim(),
-            $('.Q9').val().trim(),
-            $('.Q10').val().trim(),
+            $('input:radio[.Q1]:checked').val(),
+            $('input:radio[.Q2]:checked').val(),
+            $('input:radio[.Q3]:checked').val(),
+            $('input:radio[.Q4]:checked').val(),
+            $('input:radio[.Q5]:checked').val(),
+            $('input:radio[.Q6]:checked').val(),
+            $('input:radio[.Q7]:checked').val(),
+            $('input:radio[.Q8]:checked').val(),
+            $('input:radio[.Q9]:checked').val(),
+            $('input:radio[.Q10]:checked').val(),
             ]
           };
 
     console.log(newFriend);
-
-    // This line is the magic. It's very similar to the standard ajax function we used. 
-    // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-    // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-    // depending on if a tables is available or not. 
-
-    // Here we get the location of the root page. 
-    // We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
+    var user1 = newfriend.scores
+    
     var currentURL = window.location.origin;
 
-      $.post(currentURL + "/api/api-routes", newFriend,
-      function(data){
-
-        // If a table is available... tell user they are booked.
-        for (var i =0; i <data.length; i++) data == true){
-          alert("")
+    $.post(currentURL + "/api/api-routes", newFriend, function(data){
+        console.log(data);
+    
+    var user2 = data.scores
+        
+    function friendCompatibility(){
+         for (var i =0; i <user2.length; i++){
+         var differences = (newFriend.scores[0] - i[0]).math.abs()
+           }
         }
-
-        // If a table is available... tell user they on the waiting list.
-        if(data == false){
-          alert("")
-        }
-
         // Clear the form when submitting
-        $('#reserve_name').val("");
-      $('#reserve_phone').val("");
-      $('#reserve_email').val("");
-      $('#reserve_uniqueID').val("");
- 
             $('#inputName').val("")
             $('#inputPictureLink').val("")
-            $('.Q1').val("")
-            $('.Q2').val("")
-            $('.Q3').val("")
-            $('.Q4').val("")
-            $('.Q5').val("")
-            $('.Q6').val("")
-            $('.Q7').val("")
-            $('.Q8').val("")
-            $('.Q9').val("")
-            $('.Q10').val("")
-
-      });
-
-return false;
+            this.checked =false;
+        });
 
 });
 
