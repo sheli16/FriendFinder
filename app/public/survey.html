@@ -55,15 +55,8 @@ body { background-image:url('http://cdn.dcodes.net/2/bg_images/light/l15.png'); 
       <input type="picture" class="form-control" id="inputPictureLink" placeholder="Picture Link">
     </div>
   </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
-    </div>
-  </div>
+   
+  
 </form>
 
 
@@ -221,13 +214,23 @@ body { background-image:url('http://cdn.dcodes.net/2/bg_images/light/l15.png'); 
     
     // Here we grab the form elements
     var newFriend = {
-      customerName: $('#reserve_name').val().trim(),
-      phoneNumber: $('#reserve_phone').val().trim(),
-      customerEmail: $('#reserve_email').val().trim(),
-      customerID: $('#reserve_uniqueID').val().trim()
-    };
+      Name: $('#inputName').val().trim(),
+      photoURL: $('#inputPictureLink').val().trim(),
+       scores:[
+            $('.Q1').val().trim(),
+            $('.Q2').val().trim(),
+            $('.Q3').val().trim(),
+            $('.Q4').val().trim(),
+            $('.Q5').val().trim(),
+            $('.Q6').val().trim(),
+            $('.Q7').val().trim(),
+            $('.Q8').val().trim(),
+            $('.Q9').val().trim(),
+            $('.Q10').val().trim(),
+            ]
+          };
 
-    console.log(newReservation);
+    console.log(newFriend);
 
     // This line is the magic. It's very similar to the standard ajax function we used. 
     // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
@@ -238,11 +241,11 @@ body { background-image:url('http://cdn.dcodes.net/2/bg_images/light/l15.png'); 
     // We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
     var currentURL = window.location.origin;
 
-      $.post(currentURL + "/api/tables", newReservation,
+      $.post(currentURL + "/api/api-routes", newFriend,
       function(data){
 
         // If a table is available... tell user they are booked.
-        if(data == true){
+        for (var i =0; i <data.length; i++) data == true){
           alert("")
         }
 
@@ -256,6 +259,19 @@ body { background-image:url('http://cdn.dcodes.net/2/bg_images/light/l15.png'); 
       $('#reserve_phone').val("");
       $('#reserve_email').val("");
       $('#reserve_uniqueID').val("");
+ 
+            $('#inputName').val("")
+            $('#inputPictureLink').val("")
+            $('.Q1').val("")
+            $('.Q2').val("")
+            $('.Q3').val("")
+            $('.Q4').val("")
+            $('.Q5').val("")
+            $('.Q6').val("")
+            $('.Q7').val("")
+            $('.Q8').val("")
+            $('.Q9').val("")
+            $('.Q10').val("")
 
       });
 
